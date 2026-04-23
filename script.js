@@ -1,41 +1,33 @@
-const topbar = document.querySelector("[data-topbar]");
-const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
-const wallpaperCards = Array.from(document.querySelectorAll(".wallpaper-card"));
-const resultsCount = document.querySelector("[data-results-count]");
-const yearNode = document.querySelector("#current-year");
+const navToggle = document.querySelector("[data-nav-toggle]");
+const nav = document.querySelector("[data-nav]");
+const footerYear = document.querySelector("[data-year]");
 
-const updateResults = (filter) => {
-  let visible = 0;
+if (navToggle && nav) {
+  const closeNav = () => {
+    navToggle.setAttribute("aria-expanded", "false");
+    nav.dataset.open = "false";
+  };
 
-  wallpaperCards.forEach((card) => {
-    const tags = (card.dataset.tags || "").split(" ");
-    const matches = filter === "all" || tags.includes(filter);
-    card.hidden = !matches;
-    if (matches) visible += 1;
+  navToggle.addEventListener("click", () => {
+    const expanded = navToggle.getAttribute("aria-expanded") === "true";
+    navToggle.setAttribute("aria-expanded", String(!expanded));
+    nav.dataset.open = String(!expanded);
   });
 
-  if (resultsCount) {
-    resultsCount.textContent = `Showing ${visible} wallpaper${visible === 1 ? "" : "s"}`;
-  }
-};
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    filterButtons.forEach((entry) => entry.classList.remove("is-active"));
-    button.classList.add("is-active");
-    updateResults(button.dataset.filter || "all");
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      closeNav();
+    });
   });
-});
 
-if (yearNode) {
-  yearNode.textContent = new Date().getFullYear();
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 820) {
+      closeNav();
+    }
+  });
 }
 
-const handleScroll = () => {
-  if (!topbar) return;
-  topbar.classList.toggle("is-scrolled", window.scrollY > 12);
-};
+if (footerYear) {
+  footerYear.textContent = new Date().getFullYear();
+}
 
-window.addEventListener("scroll", handleScroll, { passive: true });
-handleScroll();
-updateResults("all");

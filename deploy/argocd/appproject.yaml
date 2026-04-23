@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: darksoulsii
+  namespace: argocd
+spec:
+  description: Dark Souls II keyword site managed from the darksoulsii repository
+  sourceRepos:
+    - https://github.com/gateszhangc/darksoulsii.git
+  destinations:
+    - namespace: darksoulsii
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"

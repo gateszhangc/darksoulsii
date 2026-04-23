@@ -1,10 +1,11 @@
 {
-  "name": "artemis-2-wallpaper",
+  "name": "darksoulsii-guide-hub",
   "version": "1.0.0",
   "private": true,
-  "description": "Static Artemis II wallpaper site built from publicly released NASA imagery.",
+  "description": "Static Dark Souls II keyword site with brand assets and browser tests.",
   "scripts": {
     "start": "node server.js",
+    "brand:generate": "node scripts/generate_brand_assets.js",
     "test": "playwright test",
     "test:browser": "playwright test"
   },
@@ -12,3 +13,4 @@
     "@playwright/test": "^1.54.2"
   }
 }
+

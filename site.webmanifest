@@ -1,11 +1,11 @@
 {
-  "name": "Artemis II Wallpaper",
-  "short_name": "Artemis II",
-  "description": "Independent editorial collection of Artemis II wallpapers using publicly released NASA imagery with source credit.",
+  "name": "Dark Souls II Guide Hub",
+  "short_name": "DS2 Guide",
+  "description": "Independent Dark Souls II guide hub covering bosses, areas, builds, and core FAQs.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#050912",
-  "theme_color": "#050912",
+  "background_color": "#09080a",
+  "theme_color": "#09080a",
   "icons": [
     {
       "src": "/assets/brand/favicon.png",
@@ -19,3 +19,4 @@
     }
   ]
 }
+

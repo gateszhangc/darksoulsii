@@ -12,8 +12,9 @@ module.exports = defineConfig({
   },
   webServer: {
     command: "PORT=4174 node server.js",
-    url: "http://127.0.0.1:4174",
+    url: "http://127.0.0.1:4174/healthz",
     reuseExistingServer: false,
     timeout: 120_000
   }
 });
+
