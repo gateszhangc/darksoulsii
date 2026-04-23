@@ -7,4 +7,4 @@ resources:
 images:
   - name: registry.144.91.77.245.sslip.io/darksoulsii
     newName: registry.144.91.77.245.sslip.io/darksoulsii
-    newTag: bootstrap
+    newTag: 8905ca2997695edec71488ef2673503907e9246f
