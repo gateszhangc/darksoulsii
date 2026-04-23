@@ -18,6 +18,8 @@ spec:
         app.kubernetes.io/name: darksoulsii
         app.kubernetes.io/part-of: darksoulsii
     spec:
+      imagePullSecrets:
+        - name: fleet-registry-pull
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

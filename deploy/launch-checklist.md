@@ -24,6 +24,7 @@ Route:
 3. The build Job clones the exact commit, builds with Kaniko, and pushes `registry.144.91.77.245.sslip.io/darksoulsii:<git-sha>`.
 4. GitHub Actions updates `deploy/k8s/overlays/prod/kustomization.yaml` `newTag` to the same Git SHA and pushes a `[skip ci]` commit.
 5. Argo CD syncs `darksoulsii` automatically from `deploy/k8s/overlays/prod`.
+6. Namespace `darksoulsii` must contain the pull secret `fleet-registry-pull` so runtime pods can pull from `registry.144.91.77.245.sslip.io`.
 
 ## DNS And Search
 
@@ -53,6 +54,7 @@ Production:
 ```bash
 kubectl apply -f deploy/argocd/appproject.yaml
 kubectl apply -f deploy/argocd/application.yaml
+kubectl -n homevalueestimator get secret fleet-registry-pull -o json | jq 'del(.metadata.uid,.metadata.resourceVersion,.metadata.creationTimestamp,.metadata.ownerReferences,.metadata.managedFields) | .metadata.namespace="darksoulsii"' | kubectl apply -f -
 kubectl -n argocd get application darksoulsii
 curl -I https://darksoulsii.lol/
 curl -I https://www.darksoulsii.lol/
